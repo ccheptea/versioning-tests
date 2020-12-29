@@ -11,9 +11,16 @@ jobs:
       with:
         fetch-depth: '0'
     - name: Bump version and push tag
+      id: tag_version
       uses: anothrNick/github-tag-action@1.26.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
         RELEASE_BRANCHES: main
         DEFAULT_BUMP: major
+        DRY_RUN: true
+    - name: Echo the calculated tag
+      run: |
+        echo ${{ steps.tag_version.outputs.tag }}
+        echo ${{ steps.tag_version.outputs.new_tag }}
+        echo ${{ steps.tag_version.outputs.part }}
