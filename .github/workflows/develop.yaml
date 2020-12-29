@@ -24,3 +24,11 @@ jobs:
         echo ${{ steps.tag_version.outputs.tag }}
         echo ${{ steps.tag_version.outputs.new_tag }}
         echo ${{ steps.tag_version.outputs.part }}
+    - name: Echo if major Bump
+      if: steps.tag_version.outputs.part == "major"
+      run: |
+        echo "It's a MAJOR! We should release to PRODUCTION"
+    - name: Echo if minor or patch
+      if: steps.tag_version.outputs.part != "major"
+      run: |
+        echo "It's a MINOR or PATCH! We should release to STAGING"
