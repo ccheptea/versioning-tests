@@ -1,8 +1,8 @@
-name: Create Production Release
+name: Create Staging Release
 on:
   push:
     branches:
-      - main
+      - develop
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,5 +15,5 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
-        RELEASE_BRANCHES: main
-        DEFAULT_BUMP: major
+        RELEASE_BRANCHES: develop
+        DEFAULT_BUMP: patch
